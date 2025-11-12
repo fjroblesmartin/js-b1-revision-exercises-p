@@ -62,12 +62,57 @@ const library = [
 
 //Escribe aquí tu solución / escriviu aquí la vostra solució:
 /********************* EX1 */
-
+class magicBook {
+  constructor(title, author, genre, yearPublished, available) {
+    this.title = title;
+    this.author = author;
+    this.genre = genre;
+    this.yearPublished = yearPublished;
+    this.available = available;
+    this.magicSeal = magicBook.generateMagicSeal(this.title, this.author);
+  }
+  // Método estático para generar el sello místico
+  static generateMagicSeal(title, author) {
+    const titlePart = title.substring(0, 2);
+    const authorPart = author.substring(author.length - 2);
+    return (titlePart + authorPart).toUpperCase() + "MAGIC";
+  }
+  // Metodo para cambiar disponibilidad
+  toggleAvailability(){
+    this.available=!this.available;
+  }
+}
 /********************* EX2 */
-
+// Extrae los nombres mágicos asignados
+const mysticalBooks=library.map(book=>{
+  const newMagicBook=new magicBook(
+    book.title,
+    book.author,
+    book.genre,
+    book.yearPublished,
+    book.available
+  );
+  return newMagicBook.magicSeal;
+});
+console.log("EX2 - ",mysticalBooks);
 /********************* EX3 */
-
+//Extrae los libros de genero Fantasy y publicados > 1950 
+const fantasyBooksAfter1950 = library.filter(
+  book=>book.genre == "Fantasy" && book.yearPublished>1950
+)
+console.log("EX3 - ",fantasyBooksAfter1950);
 /********************* EX4 */
+// REcorre recursivamente library
+function recursiveOracle(books, index = 0) {
+    if (index >= books.length) {
+        return 0;
+    }
+    const isAvailable = books[index].available ? 1 : 0;
+    return isAvailable + recursiveOracle(books, index + 1);
+}
+
+const totalAvailableBooks = recursiveOracle(library);
+console.log("EX4 - Libros disponibles:", totalAvailableBooks); 
 
 /********************* EX5 */
 
