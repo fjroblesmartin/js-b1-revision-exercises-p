@@ -116,11 +116,117 @@ console.log("EX4 - Libros disponibles:", totalAvailableBooks);
 
 /********************* EX5 */
 
+/**
+ * Función exterior que encuentra el libro más reciente y el de título más largo 
+ * de un array de libros, utilizando funciones internas.
+ * @param {Array<Object>} books - El array de libros.
+ * @returns {Array<Object>} Un array con [libroMásReciente, libroTítuloMásLargo].
+ */
+
+function compareBooks(books) {
+    // Función interna que devuelve el libro con el año de publicación más reciente.
+    function findMostRecentBook() {
+        // Usa reduce para encontrar el libro con el 'yearPublished' más alto.
+        return books.reduce((mostRecent, currentBook) => {
+            return currentBook.yearPublished > mostRecent.yearPublished ? currentBook : mostRecent;
+        }, books[0]);
+    }
+
+    // Función interna que devuelve el libro con el título más largo.
+    function findLongestTitleBook() {
+        // Usa reduce para encontrar el libro con el 'title.length' más grande.
+        return books.reduce((longestTitleBook, currentBook) => {
+            return currentBook.title.length > longestTitleBook.title.length ? currentBook : longestTitleBook;
+        }, books[0]);
+    }
+
+    // Invoca a los espíritus interiores y devuelve el array de resultados.
+    const mostRecent = findMostRecentBook();
+    const longestTitle = findLongestTitleBook();
+
+    return [mostRecent, longestTitle];
+}
+
+const [mostRecentBook, longestTitleBook] = compareBooks(library);
+console.log("EX5 - Libro más reciente:", mostRecentBook);
+console.log("EX5 - Libro con el título más largo:", longestTitleBook);
+/*
+Resultado esperado:
+Libro más reciente: { title: "Harry Potter and the Sorcerer's Stone", author: "J.K. Rowling", genre: "Fantasy", yearPublished: 1997, available: true }
+Libro con el título más largo: { title: "Harry Potter and the Sorcerer's Stone", author: "J.K. Rowling", genre: "Fantasy", yearPublished: 1997, available: true }
+*/
+
 /********************* EX6 */
+
+/**
+ * Hechizo mágico que acepta un número indeterminado de libros (parámetros rest) 
+ * y devuelve el libro cuya publicación fue la más antigua (menor 'yearPublished').
+ * @param {...Object} books - Un número indeterminado de objetos libro.
+ * @returns {Object} El libro con el año de publicación más antiguo.
+ */
+function earliestPublication(...books) {
+    if (books.length === 0) {
+        return null;
+    }
+
+    // Usa reduce para encontrar el libro con el 'yearPublished' más bajo.
+    return books.reduce((earliest, currentBook) => {
+        return currentBook.yearPublished < earliest.yearPublished ? currentBook : earliest;
+    }, books[0]);
+}
+
+// Invocación del hechizo pasando los elementos de 'library' como argumentos separados
+const ancientBook = earliestPublication(...library);
+
+// Prueba de invocación con libros específicos:
+const testAncient = earliestPublication(
+    library[2], // To Kill a Mockingbird (1960)
+    library[4], // The Great Gatsby (1925)
+    library[9]  // The Odyssey (-800)
+);
+
+console.log("EX6 - Libro de publicación más antigua en toda la biblioteca (earliestPublication):", ancientBook);
+// Resultado esperado: { title: "The Odyssey", author: "Homer", genre: "Epic", yearPublished: -800, available: true }
+console.log("EX6 - Prueba de hechizo con libros específicos:", testAncient);
+// Resultado esperado: { title: "The Odyssey", author: "Homer", genre: "Epic", yearPublished: -800, available: true }
 
 /********************* EX7 */
 
+// Clonación del inventario con el operador spread (...)
+const clonedLibrary = [...library];
+
+// Conjura de un nuevo libro y adición a la nueva biblioteca
+const newBook = { 
+    title: "A Brief History of Time", 
+    author: "Stephen Hawking", 
+    genre: "Science", 
+    yearPublished: 1988, 
+    available: true 
+};
+
+clonedLibrary.push(newBook);
+
+console.log("EX7 - Tamaño de la biblioteca original (library):", library.length);
+console.log("EX7 - Tamaño de la biblioteca clonada (clonedLibrary):", clonedLibrary.length);
+console.log("EX7 - El nuevo libro en la biblioteca clonada:", clonedLibrary[clonedLibrary.length - 1]);
+
 /********************* EX8 */
+
+//Ritual de serialización para convertir un objeto libro en una cadena JSON.
+function invokeSerialization(book) {
+    // JSON.stringify() convierte el objeto JS en una cadena JSON.
+    return JSON.stringify(book);
+}
+
+// Tomamos el primer libro de la librería
+const bookToSerialize = library[0]; 
+
+// Invocación del ritual
+const serializedBook = invokeSerialization(bookToSerialize);
+
+console.log("EX8 - Libro original para el ritual:", bookToSerialize);
+console.log("EX8 - Pergamino serializado (serializedBook):", serializedBook);
+console.log("EX8 - Tipo de dato del pergamino:", typeof serializedBook); // string
 
 /**
  * TEST
