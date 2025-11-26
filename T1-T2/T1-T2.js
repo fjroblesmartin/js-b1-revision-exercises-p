@@ -62,7 +62,7 @@ const library = [
 
 //Escribe aquí tu solución / escriviu aquí la vostra solució:
 
-/********************* EX1 */
+/********************* EX1 *********************/
 // DEfinimos la clase pedida.
 class magicBook {
   constructor(title, author, genre, yearPublished, available) {
@@ -85,7 +85,7 @@ class magicBook {
   }
 }
 
-/********************* EX2 */
+/********************* EX2 *********************/
 // Extrae los nombres mágicos asignados
 const mysticalBooks=library.map(book=>{
   const newMagicBook=new magicBook(
@@ -99,14 +99,14 @@ const mysticalBooks=library.map(book=>{
 });
 console.log("EX2 - ",mysticalBooks); //Comprobación
 
-/********************* EX3 */
+/********************* EX3 *********************/
 //Extrae los libros de genero Fantasy y publicados > 1950 
 const fantasyBooksAfter1950 = library.filter(
   book=>book.genre == "Fantasy" && book.yearPublished>1950
 )
 console.log("EX3 - ",fantasyBooksAfter1950); //Comprobación
 
-/********************* EX4 */
+/********************* EX4 *********************/
 // REcorre recursivamente library
 function recursiveOracle(books, index = 0) {
     if (index >= books.length) {
@@ -119,7 +119,7 @@ function recursiveOracle(books, index = 0) {
 const totalAvailableBooks = recursiveOracle(library);
 console.log("EX4 - Libros disponibles:", totalAvailableBooks); //Comprobacion
 
-/********************* EX5 */
+/********************* EX5 *********************/
 // Función que encuentra el libro más reciente y el de título más largo 
 function compareBooks(books) {
     // Función interna que devuelve el libro con el año de publicación más reciente.
@@ -145,8 +145,8 @@ const [mostRecentBook, longestTitleBook] = compareBooks(library);       //
 console.log("EX5 - Libro más reciente:", mostRecentBook);               //
 console.log("EX5 - Libro con el título más largo:", longestTitleBook);  // Comprobación 
 
-/********************* EX6 */
-//( Hechizo mágico que acepta un número indeterminado de libros (parámetros rest) 
+/********************* EX6 *********************/
+// Hechizo mágico que acepta un número indeterminado de libros (parámetros rest) 
 // y devuelve el libro cuya publicación fue la más antigua (menor 'yearPublished').
 function earliestPublication(...books) {
     if (books.length === 0) {
@@ -171,7 +171,7 @@ const testAncient = earliestPublication(
 console.log("EX6 - Libro de publicación más antigua en toda la biblioteca (earliestPublication):", ancientBook);
 console.log("EX6 - Prueba de hechizo con libros específicos:", testAncient);
 
-/********************* EX7 */
+/********************* EX7 *********************/
 // Clonación del inventario con el operador spread (...)
 const clonedLibrary = [...library];
 
@@ -190,7 +190,7 @@ console.log("EX7 - Tamaño de la biblioteca original (library):", library.length
 console.log("EX7 - Tamaño de la biblioteca clonada (clonedLibrary):", clonedLibrary.length);
 console.log("EX7 - El nuevo libro en la biblioteca clonada:", clonedLibrary[clonedLibrary.length - 1]);
 
-/********************* EX8 */
+/********************* EX8 *********************/
 //Ritual de serialización para convertir un objeto libro en una cadena JSON.
 function invokeSerialization(book) {
     // JSON.stringify() convierte el objeto JS en una cadena JSON.
@@ -205,7 +205,6 @@ const serializedBook = invokeSerialization(bookToSerialize);
 console.log("EX8 - Libro original para el ritual:", bookToSerialize);
 console.log("EX8 - Pergamino serializado (serializedBook):", serializedBook);
 console.log("EX8 - Tipo de dato del pergamino:", typeof serializedBook); // string
-
 
 /**
  * TEST
