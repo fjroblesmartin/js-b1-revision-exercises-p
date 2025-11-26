@@ -84,7 +84,7 @@ class magicBook {
     this.available=!this.available;
   }
 }
-
+ 
 /********************* EX2 *********************/
 // Extrae los nombres mágicos asignados
 const mysticalBooks=library.map(book=>{
